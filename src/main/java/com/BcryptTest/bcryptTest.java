@@ -1,22 +1,15 @@
-package com.chilkatsoft;
+package com.BcryptTest;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ChilkatExample {
+public class bcryptTest {
 
-    static {
-        try {
-            System.loadLibrary("chilkat");
-//        System.loadLibrary("D:\\CompanyProjects\\chilkat-9.5.0-jdk11-x64");
-        } catch (UnsatisfiedLinkError e) {
-            System.err.println("Native code library failed to load.\n" + e);
-            System.exit(1);
-        }
-    }
 
-    public static void main(String argv[]) {
+    public static void main(String[] argv) {
         // This example assumes the Chilkat API to have been previously unlocked.
         // See Global Unlock Sample for sample code.
 
@@ -35,19 +28,20 @@ public class ChilkatExample {
 
     //得到list
     public static List<String> getOAuthUsers(String password, HashMap<String, String> input){
-        CkCrypt2 crypt = new CkCrypt2();
 
         List OAuthGroup = new ArrayList<String>();
 
-        for (String key : input.keySet()) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        for(String key : input.keySet()){
             String storedHash = input.get(key);
-            System.out.println(key);
-            boolean passwordValid = crypt.BCryptVerify(password, storedHash);
-            if (passwordValid == true) {
-                System.out.println(key + "是OAUTHs");
+            System.out.println("用户ID"+key);
+            boolean passwordValid = passwordEncoder.matches(password, storedHash);
+            if(passwordValid == true){
+                System.out.println(key + "是OAuth用户");
                 System.out.println(passwordValid);
                 OAuthGroup.add(key);
-            } else {
+            }else{
+                System.out.println(key + "不是OAuth用户");
                 System.out.println(passwordValid);
             }
         }
