@@ -1,4 +1,4 @@
-package com.BcryptTest;
+package com.bcrypt;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class bcryptTest {
+public class BcryptTest {
 
 
     public static void main(String[] argv) {
@@ -29,7 +29,7 @@ public class bcryptTest {
     //得到list
     public static List<String> getOAuthUsers(String password, HashMap<String, String> input){
 
-        List OAuthGroup = new ArrayList<String>();
+        List oAuthGroup = new ArrayList<String>();
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         for(String key : input.keySet()){
@@ -39,12 +39,12 @@ public class bcryptTest {
             if(passwordValid == true){
                 System.out.println(key + "是OAuth用户");
                 System.out.println(passwordValid);
-                OAuthGroup.add(key);
+                oAuthGroup.add(key);
             }else{
                 System.out.println(key + "不是OAuth用户");
                 System.out.println(passwordValid);
             }
         }
-        return OAuthGroup;
+        return oAuthGroup;
     }
 }
