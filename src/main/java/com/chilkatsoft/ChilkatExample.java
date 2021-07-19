@@ -30,7 +30,7 @@ public class ChilkatExample {
         input.put("4", "$2a$10$H5kIVktMGzAPKGKNAe9DVu0iwEqfhv/o4MMJ/Dzw/MPy1leOE9NOC");
         input.put("5", "$2a$10$H5kIVktMGzAPKGKNAe9DVu0iwEqfhv/o4MMJ/Dzw/MPy1leOE9NOM");
 
-        System.out.println(getOAuthUsers(password, input));
+        System.out.println("OAuth用户id一览：" + getOAuthUsers(password, input));
     }
 
     //得到list
@@ -51,7 +51,6 @@ public class ChilkatExample {
                 System.out.println(passwordValid);
             }
         }
-        System.out.println("OAuth用户id一览：" + OAuthGroup);
         return OAuthGroup;
     }
 }
